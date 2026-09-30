@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Inventory Management System</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="layout">
+
+        <!-- ================= SIDEBAR ================= -->
+
+        <aside class="sidebar">
+
+            <div class="logo">
+                📦 Inventory
+            </div>
+
+            <nav>
+
+                <button class="nav-btn active"
+                        data-page="dashboardPage">
+                    🏠 Dashboard
+                </button>
+
+                <button class="nav-btn"
+                        data-page="productsPage">
+                    📦 Products
+                </button>
+
+                <button class="nav-btn"
+                        data-page="categoriesPage">
+                    📂 Categories
+                </button>
+
+                <button class="nav-btn"
+                        data-page="vendorsPage">
+                    🏢 Vendors
+                </button>
+
+            </nav>
+
+        </aside>
+
+
+        <!-- ================= MAIN CONTENT ================= -->
+
+        <main class="main-content">
+
+
+            <!-- ================= DASHBOARD ================= -->
+
+            <section id="dashboardPage"
+                     class="page active">
+
+                <div class="page-header">
+
+                    <h1>Dashboard</h1>
+
+                    <p>
+                        Welcome to your Inventory Management System
+                    </p>
+
+                </div>
+
+
+                <!-- Dashboard Cards -->
+
+                <div class="dashboard-grid">
+
+                    <div class="dashboard-card purple">
+
+                        <div class="card-icon">
+                            📦
+                        </div>
+
+                        <div>
+                            <h3>Total Products</h3>
+                            <h2 id="totalProducts">0</h2>
+                        </div>
+
+                    </div>
+
+
+                    <div class="dashboard-card blue">
+
+                        <div class="card-icon">
+                            📊
+                        </div>
+
+                        <div>
+                            <h3>Total Stock</h3>
+                            <h2 id="totalStock">0</h2>
+                        </div>
+
+                    </div>
+
+
+                    <div class="dashboard-card green">
+
+                        <div class="card-icon">
+                            📂
+                        </div>
+
+                        <div>
+                            <h3>Total Categories</h3>
+                            <h2 id="totalCategories">0</h2>
+                        </div>
+
+                    </div>
+
+
+                    <div class="dashboard-card orange">
+
+                        <div class="card-icon">
+                            🏢
+                        </div>
+
+                        <div>
+                            <h3>Total Vendors</h3>
+                            <h2 id="totalVendors">0</h2>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Recent Products -->
+
+                <div class="recent-products">
+
+                    <div class="section-title">
+
+                        <div>
+                            <h2>Recent Products</h2>
+                            <p>Latest products in inventory</p>
+                        </div>
+
+                    </div>
+
+
+                    <div id="recentProducts"
+                         class="recent-products-row">
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ================= PRODUCTS ================= -->
+
+            <section id="productsPage"
+                     class="page">
+
+                <div class="page-header">
+
+                    <h1>Products</h1>
+
+                    <p>
+                        Manage your inventory products
+                    </p>
+
+                </div>
+
+
+                <!-- Add Product -->
+
+                <div class="content-card">
+
+                    <h2>Add New Product</h2>
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label>
+                                Product Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="productName"
+                                placeholder="Enter product name">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Category
+                            </label>
+
+                            <select id="productCategory">
+
+                                <option value="">
+                                    Select Category
+                                </option>
+
+                                <option value="Electronics">
+                                    Electronics
+                                </option>
+
+                                <option value="Accessories">
+                                    Accessories
+                                </option>
+
+                                <option value="Furniture">
+                                    Furniture
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Price
+                            </label>
+
+                            <input
+                                type="number"
+                                id="productPrice"
+                                placeholder="Enter price">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Stock
+                            </label>
+
+                            <input
+                                type="number"
+                                id="productStock"
+                                placeholder="Enter stock">
+
+                        </div>
+
+                    </div>
+
+
+                    <button id="addProduct"
+                            class="primary-btn">
+
+                        + Add Product
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- Search & Filter -->
+
+                <div class="filter-card">
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="🔍 Search Product...">
+
+
+                    <select id="statusFilter">
+
+                        <option value="all">
+                            All Products
+                        </option>
+
+                        <option value="available">
+                            Available
+                        </option>
+
+                        <option value="low">
+                            Low Stock
+                        </option>
+
+                    </select>
+
+
+                    <button id="clearFilters"
+                            class="secondary-btn">
+
+                        Clear Filters
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- Product Table -->
+
+                <div class="table-card">
+
+                    <div class="table-wrapper">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>Product</th>
+
+                                    <th>Category</th>
+
+                                    <th>Price</th>
+
+                                    <th>Stock</th>
+
+                                    <th>Status</th>
+
+                                    <th>Action</th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="productTableBody">
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Product Details -->
+
+                <div id="productDetails"
+                     class="details-card"
+                     style="display: none;">
+
+                    <div class="details-header">
+
+                        <h2>Product Details</h2>
+
+                        <button id="closeDetails"
+                                class="close-btn">
+
+                            ×
+
+                        </button>
+
+                    </div>
+
+
+                    <div id="detailsContent">
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ================= CATEGORIES ================= -->
+
+            <section id="categoriesPage"
+                     class="page">
+
+                <div class="page-header">
+
+                    <h1>Categories</h1>
+
+                    <p>
+                        Click a category to view its products
+                    </p>
+
+                </div>
+
+
+                <div class="category-grid">
+
+
+                    <!-- Electronics -->
+
+                    <div class="category-card"
+                         data-category="Electronics">
+
+                        <div class="category-icon">
+                            💻
+                        </div>
+
+                        <h2>Electronics</h2>
+
+                        <p>
+                            Computers and electronic products
+                        </p>
+
+                        <span id="electronicsCount">
+                            0
+                        </span>
+
+                        <small>
+                            Products
+                        </small>
+
+                    </div>
+
+
+
+                    <!-- Accessories -->
+
+                    <div class="category-card"
+                         data-category="Accessories">
+
+                        <div class="category-icon">
+                            🎧
+                        </div>
+
+                        <h2>Accessories</h2>
+
+                        <p>
+                            Computer and other accessories
+                        </p>
+
+                        <span id="accessoriesCount">
+                            0
+                        </span>
+
+                        <small>
+                            Products
+                        </small>
+
+                    </div>
+
+
+
+                    <!-- Furniture -->
+
+                    <div class="category-card"
+                         data-category="Furniture">
+
+                        <div class="category-icon">
+                            🪑
+                        </div>
+
+                        <h2>Furniture</h2>
+
+                        <p>
+                            Office and home furniture
+                        </p>
+
+                        <span id="furnitureCount">
+                            0
+                        </span>
+
+                        <small>
+                            Products
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Category Products -->
+
+                <div id="categoryProducts"
+                     class="details-card"
+                     style="display: none;">
+
+                    <div class="details-header">
+
+                        <h2 id="categoryTitle">
+                            Category Products
+                        </h2>
+
+                        <button id="closeCategory"
+                                class="close-btn">
+
+                            ×
+
+                        </button>
+
+                    </div>
+
+
+                    <div id="categoryProductList">
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ================= VENDORS ================= -->
+
+            <section id="vendorsPage"
+                     class="page">
+
+                <div class="page-header">
+
+                    <h1>Vendors</h1>
+
+                    <p>
+                        Manage your inventory vendors
+                    </p>
+
+                </div>
+
+
+                <div class="vendor-grid">
+
+
+                    <div class="vendor-card">
+
+                        <div class="vendor-icon">
+                            🏢
+                        </div>
+
+                        <h2>
+                            Tech Solutions
+                        </h2>
+
+                        <p>
+                            Electronics Supplier
+                        </p>
+
+                        <span>
+                            📞 +91 98765 43210
+                        </span>
+
+                    </div>
+
+
+                    <div class="vendor-card">
+
+                        <div class="vendor-icon">
+                            🎧
+                        </div>
+
+                        <h2>
+                            Accessory World
+                        </h2>
+
+                        <p>
+                            Accessories Supplier
+                        </p>
+
+                        <span>
+                            📞 +91 98765 12345
+                        </span>
+
+                    </div>
+
+
+                    <div class="vendor-card">
+
+                        <div class="vendor-icon">
+                            🪑
+                        </div>
+
+                        <h2>
+                            Modern Furniture
+                        </h2>
+
+                        <p>
+                            Furniture Supplier
+                        </p>
+
+                        <span>
+                            📞 +91 98765 67890
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+
+    <!-- ================= EDIT MODAL ================= -->
+
+    <div id="editModal"
+         class="modal">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2>Edit Product</h2>
+
+                <button id="closeModal"
+                        class="close-btn">
+
+                    ×
+
+                </button>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Product Name
+                </label>
+
+                <input
+                    type="text"
+                    id="editName">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Category
+                </label>
+
+                <select id="editCategory">
+
+                    <option value="Electronics">
+                        Electronics
+                    </option>
+
+                    <option value="Accessories">
+                        Accessories
+                    </option>
+
+                    <option value="Furniture">
+                        Furniture
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Price
+                </label>
+
+                <input
+                    type="number"
+                    id="editPrice">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Stock
+                </label>
+
+                <input
+                    type="number"
+                    id="editStock">
+
+            </div>
+
+
+            <button id="saveEdit"
+                    class="primary-btn full-btn">
+
+                Save Changes
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
